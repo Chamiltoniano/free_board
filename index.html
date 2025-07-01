@@ -186,10 +186,12 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Subir imagen de fondo</h4>
         </div>
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-     Añadir imagen: <input name="archivo" id="archivo" type="file"/>
-<input type="submit" name="subir" value="Subir imagen"/>
+<form id="uploadForm">
+  Añadir imagen: <input name="archivo" id="archivo" type="file" required />
+  <input type="button" value="Subir imagen" onclick="subirImagen()" />
 </form>
+<div id="mensaje-subida" style="margin-top: 10px; font-weight: bold;"></div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
@@ -593,5 +595,40 @@ history.undo(canvas, ctx);
         });
       });
   });
+ 
+
+function subirImagen() {
+  const archivoInput = document.getElementById('archivo');
+  const archivo = archivoInput.files[0];
+  const mensaje = document.getElementById('mensaje-subida');
+
+  if (!archivo) {
+    mensaje.textContent = "Por favor selecciona una imagen.";
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('archivo', archivo);
+
+  fetch('/upload', {
+    method: 'POST',
+    body: formData
+  })
+  .then(res => {
+    if (!res.ok) throw new Error("Error en subida");
+    return res.text();
+  })
+  .then(text => {
+    mensaje.textContent = "Imagen subida correctamente.";
+    archivoInput.value = "";
+    // recargar imágenes del modal
+    if ($('#myModal1').hasClass('in')) {
+      $('#myModal1').modal('hide');  // ocultar si estaba abierto
+    }
+  })
+  .catch(err => {
+    mensaje.textContent = "Hubo un error al subir la imagen.";
+  });
+}
  
       </script>
