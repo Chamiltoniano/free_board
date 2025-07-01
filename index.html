@@ -86,21 +86,28 @@
 
 <link rel="icon" 
       type="image/ico" 
-      href="favicon.ico">
+      href="plus.png">
 </head>
 <body style="background-color:#C0C0C0; margin: 0px 0px;">
 
 
 <div id="container">
-      <div id="container0" >
+   <!--   <div id="container0" >
       <img src="logo2.png"  width="150" height="25" style="">
-  </div>
+  </div> -->
     <div id="container1">
-  <button onclick="getColor('black');" style="width:20px;height:20px;background:black;"></button>
-  <button onclick="getColor('blue');" style="width:20px;height:20px;background:blue;"></button>
-  <button onclick="getColor('red');" style="width:20px;height:20px;background:red;"></button>
-  <button onclick="getColor('yellow');" style="width:20px;height:20px;background:yellow;"></button>
-  <button onclick="getColor('green');" style="width:20px;height:20px;background:green;"></button>
+<!-- Colores básicos -->
+      <button onclick="getColor('black');" style="width:20px;height:20px;background:black;"></button>
+      <button onclick="getColor('blue');" style="width:20px;height:20px;background:blue;"></button>
+      <button onclick="getColor('red');" style="width:20px;height:20px;background:red;"></button>
+      <button onclick="getColor('yellow');" style="width:20px;height:20px;background:yellow;"></button>
+      <button onclick="getColor('green');" style="width:20px;height:20px;background:green;"></button>
+      <button onclick="getColor('white');" style="width:20px;height:20px;background:white; border: 1px solid #000;"></button>
+      <button onclick="getColor('skyblue');" style="width:20px;height:20px;background:skyblue;"></button>
+      <button onclick="getColor('pink');" style="width:20px;height:20px;background:pink;"></button>
+      <button onclick="getColor('orange');" style="width:20px;height:20px;background:orange;"></button>
+      <button onclick="getColor('violet');" style="width:20px;height:20px;background:violet;"></button>
+
   <img src="borrador.jpg"  width="40" height="25" onclick="getBorrador()" style="" title="Borrador">
     </div>
     <div id="container2" >
@@ -109,7 +116,7 @@
   <div id="container2" style="padding: 0px 0px;  margin: 0px 0px;">
   <input type="range" min="1" max="9" value="1" id="myRange"  style="padding: 0px 0px;  margin: 0px 0px;">
   </div>
-  <div id="container3" >
+  <!-- <div id="container3" >
          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1" style="font-size:medium;  background-color: #4CAF50; /* Green */
   border: none;
   color: white;
@@ -118,7 +125,7 @@
   text-decoration: none;
   display: inline-block;
   font-size: 15px;">Elegir fondo</button>
-  </div>
+  </div> 
   <div id="container3" >
       <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style=" font-size:medium;  background-color: #4CAF50; /* Green */
   border: none;
@@ -128,7 +135,7 @@
   text-decoration: none;
   display: inline-block;
   font-size: 15px;">Subir imagen de fondo</button>
-  </div>
+  </div>-->
 
 
   <div id="container1" >
@@ -147,9 +154,9 @@
     </div>
 
 
-  <div id="container6" style="padding: 5px 0px; font-weight: bold;">
+ <!-- <div id="container6" style="padding: 5px 0px; font-weight: bold;">
  Prof: 
-  </div>
+  </div> -->
 </div>
 
 <div id="sketch">
@@ -182,10 +189,10 @@
     <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
+     <!--   <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Subir imagen de fondo</h4>
-        </div>
+        </div>-->
 <form id="uploadForm">
   Añadir imagen: <input name="archivo" id="archivo" type="file" required />
   <input type="button" value="Subir imagen" onclick="subirImagen()" />
@@ -630,5 +637,5 @@ function subirImagen() {
     mensaje.textContent = "Hubo un error al subir la imagen.";
   });
 }
- 
+
       </script>
