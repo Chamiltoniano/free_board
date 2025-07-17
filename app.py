@@ -1,17 +1,19 @@
-from flask import Flask, send_from_directory, request, redirect, url_for
-from flask import jsonify
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 import os
 
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__)
 
-UPLOAD_FOLDER = 'static/uploads'
+# Carpeta donde se subirán las imágenes
+UPLOAD_FOLDER = os.path.join('static', 'uploads')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+# Página principal
 @app.route('/')
 def index():
-    return send_from_directory('.', 'index.html')
+    return render_template('index.html')
 
+# Endpoint para subir imágenes
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if 'archivo' not in request.files:
@@ -21,15 +23,16 @@ def upload_file():
         return 'No selected file', 400
     filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
     file.save(filepath)
-    return f'Imagen subida correctamente: <a href="/{filepath}">{file.filename}</a>'
+    return f'Imagen subida correctamente: <a href="/static/uploads/{file.filename}">{file.filename}</a>'
 
+# Endpoint para listar las imágenes subidas
 @app.route('/list_uploads')
 def list_uploads():
     files = []
     for filename in os.listdir(app.config['UPLOAD_FOLDER']):
         if filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp')):
-            files.append(f'/static/uploads/{filename}')
+            files.append(url_for('static', filename=f'uploads/{filename}'))
     return jsonify(files)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
