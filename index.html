@@ -108,7 +108,8 @@
       <button onclick="getColor('orange');" style="width:20px;height:20px;background:orange;"></button>
       <button onclick="getColor('violet');" style="width:20px;height:20px;background:violet;"></button>
 
-  <img src="borrador.jpg"  width="40" height="25" onclick="getBorrador()" style="" title="Borrador">
+<img src="{{ url_for('static', filename='borrador.jpg') }}" width="40" height="25" onclick="getBorrador()" title="Borrador">
+
     </div>
     <div id="container2" >
       Tamaño de pincel:  <span id="demo"></span>
@@ -139,18 +140,21 @@
 
 
   <div id="container1" >
-      <img src="save.jpg"  width="30" height="30" onclick="save()" style="" title="Guardar como PDF">
+      <img src="{{ url_for('static', filename='save.jpg') }}" width="30" height="30" onclick="save()" title="Guardar como PDF">
   </div>
 
   <div id="container1" style="padding: 5px 0px;">
   <input type="button" value="Limpiar todo" id="clr" size="23" onclick="erase()" style="">
   </div>
   <div id="container1" >
-      <img src="calculadora.png"  width="30" height="30" data-toggle="modal" data-target="#myModal2" title="Calculadora">
+      <img src="{{ url_for('static', filename='calculadora.png') }}" width="30" height="30" data-toggle="modal" data-target="#myModal2" title="Calculadora">
+
   </div>
 
     <div id="container1" >
-       <a href="https://www.geogebra.org/calculator"><img src="graficadora.png"  width="30" height="30" data-toggle="modal" data-target="#myModal3" title="Graficador de funciones"></a>
+ <a href="https://www.geogebra.org/calculator">
+  <img src="{{ url_for('static', filename='graficadora.png') }}" width="30" height="30" title="Graficador de funciones">
+</a>
     </div>
 
 
